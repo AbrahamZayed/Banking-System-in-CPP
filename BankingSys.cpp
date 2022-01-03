@@ -1,4 +1,9 @@
-// Banking System By Abraham Zayed
+/*
+    Banking System By Abraham Zayed
+    
+    btw I'm very aware that my code contains mistake and cant be compiled atm. but, one of the reasons that i posted it was so that someone could point 
+    out to me the mistakes in the code, I think my main problem is when to call functions, and saving new users into an array with their respective pass-codes
+*/
 
 #include<iostream>
 #include<fstream>
