@@ -52,7 +52,8 @@ void Accounts::deposit(string name; int deposit_amount;)
             }
             else
             {
-                user_name[i].value += deposit_amount;
+                std::cin >> deposit_amount; "Deposit Amount: ";
+                user_value += deposit_amount;
             }
         }
         else
