@@ -5,9 +5,12 @@
     out to me the mistakes in the code, I think my main problem is when to call functions, and saving new users into an array with their respective pass-codes
 */
 
-#include<iostream>
-#include<fstream>
-#include<cctype>
+
+
+#include <iostream>
+#include <fstream>
+#include <cctype>
+#include <string.h>
 
 using namespace std;
 
@@ -16,6 +19,9 @@ class Accounts
 {
     int users_count;
     int user_password;
+    string user_name;
+    int account_value;
+
 
 public:
     void create_account();
@@ -29,6 +35,7 @@ public:
 
 void Accounts::create_account(string user_name; int money; int age;)
 {
+    std::cin >> user_name; "Enter User Name";
     do
     {
         std::cout << "Age Must Be Above or equal to 18" << endl;
@@ -38,7 +45,7 @@ void Accounts::create_account(string user_name; int money; int age;)
     {
         for (int n = 0; n < Users_count; i++)
         {
-            user_name = users[n];
+            new user_name[n] = users[n];
         }
     }
 }
@@ -93,13 +100,13 @@ void Accounts::withdraw(string name; int withdraw_amount;)
     }
 }
 
-void Accounts::delete_account(string name;)
+void Accounts::delete_account(string name; int password; bool confirmation)
 {
     for (int i = 0; i < users_count; i++)
     {
         if name = user_name[i];
         {
-            delete(user_name);
+            delete(user_name[i]);
         }
         std::cout << "User Has Been Deleted" << endl;
     }
@@ -128,14 +135,14 @@ void Accounts::balance_enquiry(string name;)
     }
 }
 
-void Accounts::verify_user(string name; int password)
+void Accounts::verify_user(string name; int password;)
 {
     do
     {
         std::cin >> user_name; "Enter Your Username: " << endl;
         std::cin >> password; "Your Password: ";
 
-    } while ((user_name != string) || (password != int));
+    } while ((strcmp(user_name) != string) || (password != int));
 
     for (int i = 0; i < user_count; i++)
     {
@@ -152,12 +159,30 @@ void Accounts::verify_user(string name; int password)
 
 class Bank
 {
-    string name;
-    long money_limit = 100000000;
+    string bank_name;
     long loan_limit;
-
+    int user_count_limit;
     class Accounts();
+public:
+    void login();
+}
 
+void Bank::login(string user_name; int password;)
+{
+    std::cin >> user_name; "Enter Username: " << endl;
+    std::cin >> user_password; "Password: " << endl;
+
+    for (int i = 0; i < user_count_limit; i++)
+    {
+        if ((user_name == user_name[i]) && (user_password == user_password[i]))
+        {
+            std::cout << "Welcome " << user_name << endl;
+        }
+        else
+        {
+            std::cout << "User name or password is incorrect";
+        }
+    }
 }
 
 void Bank::loan_application(string name; string reason_for_loan; int loan_amount; int monthly_income; int debt;)
@@ -170,7 +195,9 @@ void Bank::loan_application(string name; string reason_for_loan; int loan_amount
     if ((loan_amount > monthly_income * 24) && (debt < monthly_income * 12) && (10 * loan_amount < money_limit))
     {
         std::cout << "Your Loan Has Been Approved";
-    } else
+        user_value += loan_amount;
+    }
+    else
     {
         std::cout << "To Apply For A Loan; The Following Requirments must be meet" << endl << "1) Your loan amount must be less then monthly income times 24" << endl;
     }
@@ -181,7 +208,12 @@ void Bank::Bank_Setup(int users_num_limit; int user_money_limit; int debt_limit;
     do
     {
         std::cin >> bank_name; "What Would You Like To Name Your Bank";
-    } while (bank_name != string)
+    } while (strlen(bank_name) < 2);
+
+    if (strlen(bank_name) >= 2)
+    {
+        bank_name = bank_name;
+    }
 
     do
     {
@@ -197,8 +229,9 @@ void Bank::Bank_Setup(int users_num_limit; int user_money_limit; int debt_limit;
 int main()
 {
     Bank_Setup();
-
-    verify_user();
+    std::cin >> user_name; "User Name: ";
+    std::cin >> user_password; "Password: ";
+    verify_user(user_name, user_password);
 
     std::cout << "Welcome To The Bank Of " << bank_name, << endl;
     std::cout << "To create a new account type 1 " << endl "To delete a new account type 2" << endl << "For A Balance Enquiry type 3" << endl << "For a Deposit type 4" << endl << "For a withdrawl type 5" << endl << "For A Bank Loan type 6" << endl;
@@ -206,23 +239,32 @@ int main()
 
     if (user_request == 1)
     {
-        create_account();
+        std::cin >> user_name; "Enter User Name: " << endl;
+        std::cin >> user_password; "Enter Password: " << endl;
+        std::cin >> deposit_amount; "Inital Deposit: " << endl;
+        create_account(user_name, user_password, deposit_amount);
     }
     else if (user_request == 2)
     {
-        delete_account();
+        std::cin >> user_name; "Enter User Name: " << endl;
+        std::cin >> user_password; "Enter Password: " << endl;
+        std::cin >> confirmation; "Are you sure you would like to delete your account?";
+        delete_account(user_name, user_password, confirmation);
     }
     else if (user_request == 3)
     {
-        balance_enquiry();
+        balance_enquiry(user_name, user_password);
     }
     else if (user_request == 4)
     {
-        deposit();
+        std::cin >> deposit_amount; "Deposit Amount: " << endl;
+        deposit(user_name, user_password);
     }
     else if (user_request == 5)
     {
-        withdrawl();
+
+        std::cin >> withdrawl; "Withdrawl amount: " << endl;
+        withdrawl(withdraw_amount);
     }
     else if (user_request == 6)
     {
